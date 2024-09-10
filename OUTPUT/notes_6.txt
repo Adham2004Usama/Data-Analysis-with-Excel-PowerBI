@@ -1,0 +1,65 @@
+Name the page with the powerpoint background "Design"
+--------------------------
+In "Analytics" page:
+
+1.Add "DAX"<->"Total Revenue" and "dSalesperson"<->"Team Leader" in a column chart
+
+2.Put all the single card visuals in a card(new) visual
+
+3.Add "DAX"<->"Total Revenue" and "Date" in a line chart
+
+4.To get top 5 products in Revenue:
+1)Add "DAX"<->"Total Revenue" and "dProducts"<->"Product", then
+2)From "Filters" pane-->"Filters on this visual"-->"File Type"-->"Tope N"-->write"5"
+
+5.Repeat point 4 on "DAX"<->"Total Revenue" and "dSalesperson"<->"Salesrep"
+
+6.Add 2 slicer visuals "dSalesperson"<->"Team Leader" and "dCategory"<->"Category"
+---------------------------
+Adding bookmarks:
+
+1.From "View" above-->Enable "Bookmark"
+
+2.Click on "Food" in the pie chart and add a book mark for it and name it "Food Revenue"
+
+3.Repeat for "Cakes & Pastries Revenue", "Beverages Revenue", and "Overall Revenue"
+----------------------------
+Now for Publishing & Sharing:
+
+First to be able to publish You must be signed in
+
+1.Go to "home" page, then click "Publish" above-->choose "My desktop"
+
+Now it's in PowerBI web service with the same link not changing anything in the data
+
+You can and should hide tooltips pages where when opening the link you don't see unimportant pages
+
+2.Now from the web service, click the "Share" button
+
+Or if the person you sending the link has no account in PowerBI, you click the "File"-->"Embed report" and it'll have a public link(so be careful not to share confedintioal data as anyone has the link can have the data)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

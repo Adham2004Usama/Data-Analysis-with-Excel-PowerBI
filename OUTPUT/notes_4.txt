@@ -1,0 +1,143 @@
+2/1/2024
+M/D/Y
+DD-->1
+DD-->01
+DDD-->Thu
+DDDD-->Thursday
+
+M-->1
+MM-->01
+MMM-->Feb
+MMMM-->Feburary
+
+Y-->24
+YY-->2024
+
+Q-->Quarter
+Q-->1
+
+Q1 Jan-Mar
+Q2 Apr-Jun
+Q3 Jul-Sep
+Q4 Oct-Dec
+
+Week number
+----------------------
+Using DAX functioin to add calendar columns:
+-We're adding new columns
+1.Add the formula:
+Year= YEAR('Calendar'[Date])
+
+2.Add the formula:
+Month No.= MONTH('Calendar'[Date])
+
+3.Add the formula:
+Month= FORMAT('Calendar'[Date],"MMM")
+
+4.Select "Month" column, select "Sort by column" from above-->"Month no."
+
+5.Add the formula:
+Weekday No.= WEEKDAY('Calendar'[Date],1)
+!!(1 means sunday, 2-->monday, 3-->??)
+
+6.Add the formula:
+Day Name= FORMAT('Calendar'[Date],"DDD")
+
+-Anything in a column can be used in a visual
+
+7.Add the formula:
+Week Number= WEEKNUM('Calendar'[Date],1)
+----------------------
+1.Look at calendar columns in "visual view"
+
+2.In "page 3", Add a line chart
+
+3.in the x-axis add "Year"-->"Month"-->"Week number"
+
+4.Select "Day Name" column, select "Sort by column" from above-->"Weekday no"
+
+5.Remove from the line chart all in x-axis, then add "Year"-->"Day Name"
+
+6.Add the formula:
+Qarter=FORMAT('Calendar'[Date],"\QQ")
+!!(the"\" keeps the the first "Q" as a letter)
+
+7.Add the formula:
+YQM= FORMAT('Calendar'[Date],"YYYY- \QQ- MMM")
+
+8.Remove from the line chart all in x-axis, then add "Year"-->"Quarter"-->"Week Number"
+
+9.From the three dots on the chart select "sort axis"-->"Year Quarter Week NUmber"-->"Sort descending"
+------------------
+-In "fsalesdata", add a colummn:
+1.Revenue= fsalesdata[Units Sold]*Related(dProducts[Price])
+
+2.Add a "Revenue" sheet
+
+3.Drag and drop "Revenue" and "Category" in a pie chart
+
+4.Drag and drop "Revenue" and "Date" in a line chart
+
+5.Drag and drop "Rvenue"
+
+6.Change its visual type to "Card(new)",then add "Rvenue" two more times-->change type to "average", "count", then add "Units sold"
+
+7.Change their names to "Revenue", "Average", "Count", "Units Sold"
+-----------------
+-Segmentation:
+1.In "fsalesdata", Add new column formula:
+Order volume= IF(fsalesdata[Units Sold]>30,"High Volume","Low Volume")
+
+2.In "Revenue"  page, drag and drop "Revenue" and "Order Volume" in a pie chart
+
+3.drag and drop "Order Volume" in a "slicer" visual 
+--------------------------
+1.Add a new page
+
+2.from "Modeling", select "New table"
+
+3.In the formula bar write "DAX =", then hit enter
+
+4."DAX" table is added
+
+5.Right click on "DAX" table, and add "new measure"
+
+6.Order= COUNTROWS(fsalesdata); counting the number of the rows
+
+!!(There arre two important adantages in this measure:
+1-Creates the chart already named corecctly without the need to edit it over and over again;ex:if dragging "order" from "DAX" and "Region" from "fsalesdata" is much easier than dragging "Revenue" "Region" from "fsalesdata" then changing the "sum" to "count" and changing the chart's name
+2-when clicking on "order", from "Measure tools" above, you can choose how the data appears; ex: thoushands' seperator,$ sign, etc.)
+
+7.Right click on "DAX" table, and add "new measure"
+
+8.Products= COUNTROWS(dProducts)
+
+9.Right click on "DAX" table, and add "new measure"
+
+10.Active Products= DISTINCTCOUNT(fsalesdata[Product])
+
+11.Right click on "DAX" table, and add "new measure"
+
+12.Active Products %= [Actrive Products]/[Products]
+
+13.After dragging it, change it to a precentage from above
+
+14.Right click on "DAX" table, and add "new measure"
+
+15.Total Revenue = SUM(fsalesdata[Revenue])
+
+16.From "Measure tools" above select $ sign, thoushands' seperator, 0 decimal places
+
+17.Add the following:
+1)All the DAX measures we did in a "Card(new)" visual
+2)Drag "Region" and "Category" seperately
+3)Drag "Order" from "DAX" and "Region" from "fsalesdata"
+
+18.Look for the lacking\not active products by selecting from the "Category" table; noticing the "food" and "beverages" are missing in one product each
+
+19.Add a "Gauge" visual, dragging and dropping "Total Revenue"-->"Format"-->"Gauge axis"-->change "Target" to 600000 and "Max" to 800000
+
+20.Now you can select whatever you want to know its toal revenue comparing with the targrt and maximum
+
+21.Drag and drop "Total Revenue" from "DAX" and "Sales Rep" from "dSalesperson", and changing the targrt to 30000 and maximum to
+80000

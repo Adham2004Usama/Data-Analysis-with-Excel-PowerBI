@@ -1,0 +1,89 @@
+requirements??
+Understanding the rawdata??
+
+
+Data Analysis Project
+ETL-->Extract, Transform, and Load--> Power Query (Automatic)
+Modeling--> Dax Data analysis Expression
+Visusalization-->PowerBI
+Sharing
+--------------------------
+1.Combining all sales excel files in one file with powerbi
+
+2."Get Data"-->"Folder"-->Browse and find the sales folder
+
+3.slect "Transform Data"
+
+4.Need to get rid of any files other than csv by clicking on "Extention" filter and uncheck every file type except "csv"
+
+5.click the filter on "content" column to combine files
+
+6.For them to combine all columns' headers are the same and all the tables are with the same formation to avoid any errors or extra columns
+
+7.Revise your data; as we must check in these three:
+1)Title
+2)Datatype
+3)Data is valid with no errors
+
+8.name the table "fsalesdata" where f stands for facts
+
+9.If you clicked the error of the first column you'll see all the files combined
+
+10.Changed its name with "Region"
+
+11.We want to get rid of ".csv" from the "Region" column; using "transform"-->"extract"-->"extract before delimeter"--> the delimeter will be "."
+
+12."transform"-->"format"-->"capatalize each word" while selecting "region" column
+
+13.Now we look for errors if there is any
+
+14."Close and apply"-->Wait for loading
+
+15.Drag and drop units sold
+
+16.Drag and drop units sold order date, then drag units sold to it
+
+17.click on "expand all level down" arrow 
+
+18.Do the same to region
+
+19.Save the file naming it "PowerBI data analysis project
+----------------------
+1.Open "2-5-lookup-tables"
+
+!!(note: there is a difference between table and range when reading them for building a query)
+
+2.Selct the file from PowerBI from excel workbook
+
+"f" means "facts", "d" means "dimensions"
+
+3.name the files "dcategories", "dProducts", "dSalesReps"
+
+4.Removing null from "dcategories", changing to currency in "dProducts", and use first row as headers in "dSalesReps" by "Home"-->"Use First Row as Headers" (or clicking the top left button on the table and slecting the comand)
+
+5.Go to model view
+-----------------------
+1.Create connections by dragging one of what you want to connect and drop on the other.
+!!(The "1" refers that it only written\mentioned once, the "*" refers that it written\mentioned more than once,(eg.:("dCategories connection with ddProducts"means"one to many"))
+
+2.Go to "report view", build the following charts:
+category<-->units sold from dCat..&fsal..
+product<-->units sold from dPro..&fsal..
+sales rep<-->units sold from dSal..&fsal..
+team leader<-->units sold from dSal..&fsal..
+supervisor<-->units sold from dSal..&fsal..
+Region<-->units sold from fsal..
+
+5.Add a text box and write"Units Sold Dashboard"
+
+6.This dashbord is dynamic and changes with any changes you make in the data,So fo to module 2--> add north west file to the 2-4-sales folder--> Go and refresh the powerbi, then you'll find noticebly that "Units sold by region" will increase a bar 
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,189 @@
+Instead of calculating and editing the average every time we use DAX formulas to implement the following:
+
+1.Add a new page and name it "Analytics"
+
+2.Add new measure in "DAX" table
+
+3.Add following formula:
+Average Revenue= AVERAGE(fSalesdata[Revenue])   ; Gets you the arthemitic mean
+
+4.Add following formula:
+Min Revenue= MIN(fSalesdata[Revenue])
+
+5.Add following formula:
+Max Revenue= MAX(fSalesdata[Revenue])
+
+6.drage and drop "Total Revenue" in a "Card(new)" and add "Order", "Min Revenue", "Max Revenue", and "Average Revenue"
+
+7.Add a text box making a title of "REVENUE DASHBORD"
+------------------------
+If you look at "Revenue" sheet, you'll see the carts built have a not so good title
+
+1.By using "Total Revenue" from "DAX" drag "Category" on it in a pie chart, you'll see the title difference
+
+2.To see more informatioin abiut the region you hover on, we can add tooltips page or from "Build a visual" beside the chart add in tooltips what you want:"Order", "Min Revenue", "Max Revenue", "Average Revenue"
+-------------------------------
+If in "Sold Units" sheet "Sum of Units Sold by Category" isn't made:
+can we show information from another page ,like how we did in tooltips, or filter information in another page? YES
+By using "Drilltrough"
+ex:The page you choose to be "Drillthrough"<-->"Sold Units" will be the page be filterd from infromation according to the page you choose (aka the Source) choosing which table to Drill through from
+
+1.From "Format" change page type to "Drillthrough"-->"Drill through from" choose "dCategories"-->"category"
+
+2.Go to "Analytics" page, right click on what you want to filter from the visual--> "Drill through"-->"Sold Units"
+
+3.It'll move you to the "Sold Units" page filtered by "Food" category
+
+4.When you're done hold contol and click the back arrow buttoon in top left corner
+
+5.Do the same by adding in "Drill through from"-->"dSalesperon"-->"Supervisor" and adding in "analytics" page a pie chart of "DAX"<->"Total Revenue" and "dSalesperson"<->"Supervisor"
+
+!!Notice that when drill throgh in the category visual the "Sum of Units Sold by Category" will be one whole pie
+
+You can expand "Filters" pane in "Sold Units" and add or remove from the pane itself
+---------------------------------
+1.Add new measure in "Dax" with the following formula:
+Food Revenue= Calculate([Total Revenue],dCategories[Categoty]="food")   ; adding you exppresion and your filter 
+
+2.Drag and drop it making it to 0 decimal, then click on food in the chart noticing it has the same value of revenue
+
+3.Add this formula:
+L.Y. Food Revenue= Calculate([Total Revenue],dCategories[Categoty]="food",dSalesReps[Supervisor]="L.Y")  ; adding another filter 
+
+4.Drag and drop it making it to 0 decimal, then click on food in the chart and by holding contol & clicking on L.Y in the chart noticing it has the same value of revenue
+
+5.Add this formula:
+Food Revenue(>30 unit)= Calculate([Total Revenue],dCategories[Categoty]="food",fsalesdata[Units Sold]>30
+
+6.Drag and drop it
+-------------------------
+Time Intelligence DAX: ability to show & compare current period, previous period, and same period last year
+
+current period
+QTD Month to Date; 1 Feb 2024-->6 Feb 2024
+QTD Quarter to Date; 1 jan 2024-->6 Feb 2024
+YTD Year to Date; 1 jan 2024-->6 Feb 2024
+
+previous period
+previous Month; Feb Vs Jan
+previous Quarter; Q1-2024 Vs Q4-2023
+previous Year; 2024 Vs 2023
+
+same period last year
+SMLY; Feb 2024 Vs Feb 2023
+SQLY; Q1 2024 Vs Q1 2023
+SPLY; 1 jan 2024-->6 Feb 2024 Vs 1 jan 2023-->6 Feb 2023
+
+1.Add a new page, select "Calendar"<->"Date" and "DAX"<->"Total Revenue" in a matrix chart
+!!(Make sure the numbers are 2 decimal places)
+
+We want to calculate MTD Revenue
+
+2.Add new measure of Farmula:
+MTD Revenue= TOTALMTD([Total Revenue], 'Calendar'[Date])
+
+3.Drag and drop; it'll show you all the sales done on the last month given in the calender we have
+
+Repeat the previous calculating QTD and YTD
+
+4.Add these Fromulas:
+QTD Revenue= TOTALQTD([Total Revenue], 'Calendar'[Date])
+YTD Revenue= TOTALYTD([Total Revenue], 'Calendar'[Date])
+
+5.Add them to MTD card(new) visual
+
+6.Add card(new) visual above the previous one containg "Total Revenue", "Average Revenue", and "Order"
+
+7.Add this Fromula:
+Previous Month= CALCULATE([Total Revenue], PREVIOUSMONTH('Calender'[Date]))
+
+8.BY Dragging and dropping, it'll show blank unless you chose a month; ex:Feb 2019 will show jan 2019
+
+Repeat the previous calculating Previous Month and Previous Month
+
+9.Add these Fromulas:
+Previous Quarter= CALCULATE([Total Revenue], PREVIOUSQUARTER('Calender'[Date]))
+Previous Year= CALCULATE([Total Revenue],PREVIOUSYEAR('Calendar'[Date])
+
+10.Add them to Previous month card(new) visual
+
+!!Again this card(new) visual will show nothing when no time is selected
+
+11.Add this Fromula:
+SMLY= CALCULATE([MTD Revenue],SAMEPERIODLASTYEAR('Calendar'[Date]))
+
+12.Drag and drop Showing Decenber sales in 2018
+
+Repeat the previous calculating SQLY and SPLY
+
+13.Add these Fromulas:
+SQLY= CALCULATE([QTD Revenue],SAMEPERIODLASTYEAR('Calendar'[Date]))
+SPLY= CALCULATE([YTD Revenue],SAMEPERIODLASTYEAR('Calendar'[Date]))
+----------------------------
+!!If you choose any month or quarter in 2018, it'll show nothing in the "previous year", "SMLY", "SQLY", and "SPLY"
+
+These numbers are really important in buisnesses and all you need is to refresh PowerBI whenever you add any new data
+
+All of this are simple calculations as you can add precentages, other comparisons, etc..
+
+1.An example using of these cards is to drag and drop "Calendar"<->"YQM" in a slicer visual selecting whatever you want
+
+We have 3 slicer styles (Tile, Vetical list, Dropdown) you can select from "Format"-->"slicer settings"-->"Options"
+---------------------------
+Adding a background:
+
+1.Make a background by Power Point and Save it as a ".png, .jpg, or .svg"
+
+2.Add a new page in PowerBi, from "Format"-->"Canvas background"-->browse for the pic in "image"
+
+3.Add a visual of "Date" and "Total Revenue", then from "Format"-->"Size and style"-->turn "background" to off
+
+4.from "Format"-->"line"-->"Colors"-->choose "More colors"-->write the hex number you got from Power Point background
+
+(You can choose a line style from: solid, smooth, step)
+
+Now we want the icons in the picture clickable hyperlinks
+
+5.From "Insert" above-->"Buttons"-->Choose "Blank" and fit it on the icon
+
+6.Copy and paste the button and fit on the rest of the icons
+
+7.Select all the buttons and from "Format"-->"Button style"-->turn "Border" off
+
+8.Now to select a destention for any of them:
+from "Format"-->turn on "Action"-->change "Type" to "Page navigation" and "destination" to the following:
+"Home"(change page 1 name to Home), the next one to "Analytics"
+
+9.control & click the buttons to reach the destination
+------------------------
+You can do that without putting in mind creating viusals and hyperlinks by selecting "Buttons" from "Insert"-->"Navigator"-->"Page navigator"
+
+1.Do it in "Home" page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

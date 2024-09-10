@@ -1,0 +1,120 @@
+implicit ضمنيا
+explicit غير موجود ضمنيا
+
+Header buttons:
+*Look at it inn the video*
+Drill up ^, Drill down(arrow dived into two vv), (two arrows down), drill down mode focuses on whatever you select and want to get down
+
+Filter sign:
+-if clicked on a chart then select the filter sign of any char it'll read waht it has been filterred with
+
+Focus mode:
+- gets you to focus on specific chart
+
+...:
+-"Export data" export it as a csv file table
+-"Show as a table" shows the table in case if you want to see the table before exporting the data.
+-the rest is pretty much explained
+
+Edit Interaction:
+-when selecting something it highhlights its relatioships in every chart.
+-we want to completely filter them, meaning to make others disappear
+1.select any visual-->"Format"-->"Edit  interaction"
+2.in eachh visual you'll have the following:
+"none","highlight","filter"
+-It is not necessary to do this as the highlighting does the job but if you want show that way you can.
+
+Tooltibs:
+-when putting the mouse on any of the bars it shows you info for that bar
+1. select "units sold" from "fsalesdata"--> slect the thousand colon seperator from "Column tools" above
+-Now every bar in the carts will have the colon
+-You can also add your own tooltibs
+1.slect "BUild a visual" next to "Product" chart
+2.Make "Suggest a type" off
+3.Add in "tooltips" "units sold" twice
+4.Right click one of them-->"average" and the other-->"count"
+5.Rename them "Average units sold", "Count of orders", and the x-axis "Total sold units"
+-----------------
+1.Add "units sold" twice, first change it to "count" and the other change it to "average" 
+------------------
+-The tooltips we made is only in that chart we edited, so we are going to make a tooltip page
+1.Add a new page-->"Format"-->"Page infomation"-->"Page type"--"tooltip"
+2.Select from above a visual type called "card (new)"
+3.Add "Units sold" 3 times, sum, average, and count
+-They'll be so big
+4.Go to "Format"-->"Callout values"-->"values"--> change font size to 15, then go to "Label"-->change font size to 8 and "Horizintal alignment" to center
+5.change the titles from "Build a visual": "Total", "Average", and "Orders"
+----------------
+-Now you need to apply it, go to "Sold Units" page
+1.Select "Sum of units sold by region" chart-->"Format"-->"properties"-->"Options"-->"Page"-->change the page to "page 2"
+2.Now start moving the mouse on the bars
+3.Change "Page 2" to "tooltip 1"
+------------------
+-We made "tooltip 1" in Excel in a harder way; where in PowerBI we can add what need in one time
+1.Add another "tooltip" page and change its name "tooltip 2"
+2.from "fsalesdata"-->drag and drop both "Order Date" and "Units Sold"
+-------------------
+-go to "Sold Units" page
+1.Select to "...by category" chart-->"format"-->"properties"-->"Options"-->"Page"-->change the page to "tooltip 2"
+---------------------
+1.Copy "tooltip 1" and paste it in "Sold Units" and delete the other 3 we added in "Sold Units" page
+---------------------
+1.Add another tooltip page dragging "Team Leader" and "Units Sold", then Select to "...by supervisor" chart-->"format"-->"properties"-->"Options"-->"Page"-->change the page to "tooltip 3"
+--------------------
+1.Add another tooltip page dragging "Region" and "Units Sold", then Select to "...by Team Leader" chart-->"format"-->"properties"-->"Options"-->"Page"-->change the page to "tooltip 4"
+----------------------
+-Enter the data of "stores" file from module 3 -->"Transform Data"
+1.rename it to "dStore"
+2.click on "storee" and uncheck "null"
+3.Rename the "storee" to "store"
+4."Close & Apply"
+5.Go to "model view"
+6.Connect "Store" to "Store ID"
+8.Go to "Report view"
+7.Add another page--> drag and drop "Store" from "dStore" and "Units Sold"
+8.From "Add to your visual" you can add "Data labels"
+-----------------------------
+Append & Merge:
+-Now it's all automated and all you need to do is adding the needed data and refreshing PowerBI
+-In some charts in "Solid Units" sheet you'll read the word "(Blank)" in some charts
+-ex: this "(Blank)" is for the messing product in the "dProducts" table in the "Table view"
+-To know where the messing data in your dataset is:
+1.Add new page
+2.Choose "Table" visual dragging "product" from "fsalesdata" and "dProducts"
+3.You'll see there are messing products' names
+4.In this senario we got these messing names-->module 3-->text file "newproducts"-->"Transform Data"
+5.Change "Price" column into "currency"
+-All we want to do is to add the messing data we got from the text file to the "dProducts" table
+6.Go to "dProducts" table-->"Append queries"-->Select "new-products"
+7."Close & Apply"
+8.3 products are added to the products
+9.Go to "Model view" and delete any connections with "new-products" ad it's not needed
+-------------------
+-Sometimes you need to add some columns to the tables
+1.Get data from "Module 3"-->"Costs" text file-->"Transform data"
+!!(As you can see in the file before "Transform data" that that the 3 added products are not written)
+2.Rename the "Sheet 1" table to "Cost"
+3.Go to "dProducts" and select "Merge Queries" from above--> select "Cost"--> Select the two matching columns named "Product ID"-->click "Ok"
+4.Click on the button beside the "Cost" column to expand by clicking "Ok"
+5.Remove the "Cost-Product ID" Column and rename "Cost.Cost" to "Cost"
+----------------
+-The merging process can be done in a different way as follows:
+From point 4. after clicking the expand button uncheck the "Use original column name as prefix" and "Product ID" as it's written in the "dProducts" table
+
+5."Apply & Close"
+6.Go to the "Costs" Excel file and add the the 3 messing products and their values, then refresh the PowerBI file
+-------------------
+1.Go to "dProducts" table in "Table view"
+-----------------------
+-You can hide "Cost" and "new-products" as they're not needed 
+-----------------------
+DAX (Data Analysis Expression):
+1.Add "New Table" in "Table view"
+2.In the formula bar write "Calendar ="--> CALENDARAUTO()
+-Now we can costumize our columns by this table using DAX functions
+--------------------
+1.Add "South-East" file from module 3 to "2-4 sales" folder module 2, then refresh PowerBI
+!!(this file contains data for year 2019)
+-We are now using it as a main table in our dataset
+2.Go to "Model view"--> connect "fsalesdata" "Order Date" with "Calendar""Date"
+3.Now in "Page 1", remove the "Order Date" as it no more works and add "Date" from "Calender"

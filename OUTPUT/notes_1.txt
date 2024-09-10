@@ -1,0 +1,49 @@
+Select "Data" from above-->"From Table/Range"
+
+1.Remove the middle empty column; so that when export the new data in this transformation it will automatically remove that column and even if you made changes in the dataset or change the dataset itself.
+
+2.Remove the null rows by the filter in the header-->"Remove Empty" or uncheck the "null" box.
+
+(You can do this in regular excel, but you'll do the same changes over and over again, unlike how we do it now as explained earlier)
+
+3.Remove the top 2 rows in by selecting "Remove Rows"-->"Remove top rows"
+
+4.Use "Split Colums" from above to split the first column contents, dates from cities, by using "Split by delemiter" which the reference will be the space between them.
+!!(this will make error because "New York" have a space in between so it'll create an errored column, So Remove point 4 from the "APPLIED STEPS" column on the right)
+
+5.Using the same steps a point will be selected called "Left most delemiter"; acccepting only the first space seen ignoring every other space after that
+
+6.Change header titles to date, city, sales amount
+
+7.In building this power query we must check   on three things:
+	1)the data is valid
+	2)the column headers are checked and named
+	3)the data type is valid and checked
+
+8.In microsoft 365 there is a green board under the headers it'll show you precentages of valid, error, empty.
+
+9.Besides each column on the left it shows the datatype of each column, So we're going to change "date" column datatype to "date"
+
+10.Date:
+	UK format: 25/1/2024
+	US format: 1/25/2024
+So, it will cause error if using US format and fixing this is by choosing "Select Locale"--> first choose "Date" second choose "english UK".
+
+11.Change "Sales Amount" column datatype to "Currency"
+
+12.Finally, name the query from the right side to "salesdata", then close by choosing "close and load to"-->select "Table"--> choose "exisiting worksheet"--> select an empty cell.
+
+Now if we added/changed in the original data, then by selecting "Data" above and cliking on "Refresh All", it'll update these changes and put them with the same formation like the rest of the first data.
+
+13.Adding 3 example data at the end to complete it overall, then refresh as mentionedd before.
+
+14.Add two pivot tables and their charts for the new applied query.
+
+15.Adding 3 example data with different cities not referenced in the main data, then refreshing form "Data" and click on a pivot table-->"Analyze"-->"Refresh".
+
+16.
+
+
+
+
+
