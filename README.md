@@ -1,2 +1,2 @@
 # Data-Analysis-with-Excel-PowerBI
-Data cleaning and visualization
+This project is aimed to clean raw data, visualize and analyze it using Microsoft Excel and Microsoft Power BI
